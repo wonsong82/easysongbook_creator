@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" 
+					   xmlns:assets="won.assets.*"					   
+					   xmlns:font="won.font.*"
+					   
+					   
+					   initialize="init()"
+					   
+					   width="800" height="750" backgroundColor="#C8C8D5" xmlns:page="won.page.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>	
+	
+	<fx:Script source="Main3.as" />
+	
+	
+	<mx:Canvas id="canvas" x="350" y="39" width="425" height="550" dropShadowVisible="false" backgroundColor="#FFFFFF" borderColor="#000000" cornerRadius="0" symbolColor="#000000" borderVisible="false" tabEnabled="false">
+	</mx:Canvas>
+	
+	<!-- #top buttons -->
+	<assets:DataController id="dataController" x="13.65" y="16.65" width="128"  height="22" tabEnabled="true" tabIndex="1" cornerRadius="0"/>
+	<assets:SkinController id="skinController" x="150.65" y="16.65" width="181" height="22" tabEnabled="true" tabIndex="2"  cornerRadius="0"/>	
+	
+	<!-- #type button and grid controllers -->
+	<s:ComboBox id="typeController"  x="14" y="45"  selectedIndex="0" dropShadowVisible="false"  change="drawPreview()" width="89" tabEnabled="true" tabIndex="3" borderVisible="true" cornerRadius="0">
+		<s:ArrayCollection>
+			<fx:String>Book Type</fx:String>
+			<fx:String>By Title</fx:String>
+			<fx:String>By Artist</fx:String>			
+		</s:ArrayCollection>	
+	</s:ComboBox>	
+	<s:CheckBox id="sort" x="121" y="48" label="Sort" fontSize="12" tabEnabled="true" tabIndex="4"  click="drawPreview()"/>
+	<s:CheckBox id="alphabet" x="179" y="48" label="Alphabet" fontSize="12" tabEnabled="true" tabIndex="5"  click="drawPreview()"/>
+	<s:CheckBox id="grid" x="262" y="48" label="Grid" fontSize="12" tabEnabled="true" tabIndex="6"  click="drawPreview()"/>
+	<mx:ColorPicker id="gridColor" x="311" y="47" width="20" height="20" tabEnabled="true" tabIndex="7"  change="drawPreview()"/>
+	
+	<!-- # numRows & numColumns controllers -->
+	<s:Label text="# of Rows" x="14" y="82" tabEnabled="false"/>	
+	<s:NumericStepper id="numRows" x="77" y="76" minimum="10" value="40" maximum="100" stepSize="1" change="drawPreview()" tabEnabled="true" tabIndex="8"  height="23" borderVisible="true" textAlign="center" cornerRadius="0"/>
+	<s:Label text="# of Columns" x="195" y="82"  tabEnabled="false" />	
+	<s:NumericStepper id="numColumns" x="277" y="76" minimum="1" value="2" maximum="5" stepSize="1" change="drawPreview()" tabEnabled="true" tabIndex="9"  width="55" height="23" textAlign="center" cornerRadius="0"/>
+	
+	<!-- #margin controllers -->
+	<s:Label x="14" y="108" text="Margin" tabEnabled="false"/>
+	<s:Label x="77" y="108" text="top" tabEnabled="false"/>
+	<s:Label x="145" y="108" text="left" tabEnabled="false"/>
+	<s:Label x="213" y="108" text="right" tabEnabled="false"/>
+	<s:Label x="281" y="108" text="bottom" tabEnabled="false"/>	
+	<s:TextInput id="marginTop" x="77" y="121" width="38" height="22" tabEnabled="true" tabIndex="10" textAlign="center" change="drawPreview()"/>
+	<s:Label x="117" y="127" text="in" tabEnabled="false"/>
+	<s:TextInput id="marginLeft" x="145" y="121" width="38" height="22" tabEnabled="true" tabIndex="11" textAlign="center" change="drawPreview()"/>
+	<s:Label x="185" y="127" text="in" tabEnabled="false"/>
+	<s:TextInput id="marginRight" x="213" y="121" width="38" height="22" tabEnabled="true" tabIndex="12" textAlign="center" change="drawPreview()"/>
+	<s:Label x="253" y="127" text="in" tabEnabled="false"/>
+	<s:TextInput id="marginBottom" x="281" y="121" width="38" height="22" tabEnabled="true" tabIndex="13" textAlign="center" change="drawPreview()"/>
+	<s:Label x="321" y="127" text="in" tabEnabled="false"/>	
+	<mx:HRule x="10" y="152" width="322" chromeColor="#222222"/>
+	
+	<!-- #heading input controllers -->
+	<s:Label text="Heading" x="14" y="170" tabEnabled="false" />	
+	<s:TextInput id="headingText"  x="70" y="164" width="262" borderVisible="true" tabEnabled="true" tabIndex="14" height="23" change="drawPreview()"/>	
+	<font:FontBrowser id="headingFont" x="70" y="190" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="15" change="drawPreview()"   cornerRadius="0"/>	
+	<mx:ColorPicker id="headingColor" x="262" y="190" width="23" height="23" tabEnabled="true" tabIndex="16" change="drawPreview()"/>
+	<s:NumericStepper id="headingSize" x="287" y="190" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="17" change="drawPreview()" maximum="100" cornerRadius="0"/>
+	<s:Label text="By" x="14" y="222" tabEnabled="false" />
+	<font:FontBrowser id="byFont" x="69.75" y="215.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="18" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="byColor" width="23" height="23" tabEnabled="true" tabIndex="19" x="261.7" y="215.95" change="drawPreview()"/>
+	<s:NumericStepper id="bySize" x="287" y="216.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="20" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<s:Label text="Heading Height" tabEnabled="false"  x="196" y="249"/>
+	<s:TextInput id="headingHeight" tabEnabled="true" tabIndex="21"  x="287.2" y="243.2" height="20" width="32" borderVisible="true" borderColor="#696969" change="drawPreview()"/>
+	<s:Label text="in" tabEnabled="false"  x="322.5" y="249"/>
+	<mx:HRule x="10" y="268" width="322" chromeColor="#222222"/>
+	
+	<!-- # Title Artist Song Number Controller -->
+	<s:Label text="Title, Artist, Song Number" x="14" y="283" tabEnabled="false" />
+	<font:FontBrowser id="tanFont" x="69.75" y="298.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="22" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="tanColor" width="23" height="23" tabEnabled="true" tabIndex="23" x="261.7" y="298.95" change="drawPreview()"/>
+	<s:NumericStepper id="tanSize" x="287" y="299.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="24" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<mx:HRule x="10" y="325" width="322" chromeColor="#222222"/>
+	
+	<!-- #body Controllers -->
+	<s:Label text="Body" x="13" y="337" tabEnabled="false"  fontWeight="normal"/>
+	<s:Label text="Title" x="14" y="359" tabEnabled="false" />
+	<font:FontBrowser id="titleFont" x="69.75" y="352.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="25" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="titleColor" width="23" height="23" tabEnabled="true" tabIndex="26" x="261.7" y="352.95" change="drawPreview()"/>
+	<s:NumericStepper id="titleSize" x="287" y="353.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="27" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<s:Label text="Artist" x="14" y="385" tabEnabled="false" />
+	<font:FontBrowser id="artistFont" x="69.75" y="378.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="28" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="artistColor" width="23" height="23" tabEnabled="true" tabIndex="29" x="261.7" y="378.95" change="drawPreview()"/>
+	<s:NumericStepper id="artistSize" x="287" y="379.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="30" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<s:Label text="Song #" x="14" y="411" tabEnabled="false" />
+	<font:FontBrowser id="numberFont" x="69.75" y="404.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="31" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="numberColor" width="23" height="23" tabEnabled="true" tabIndex="32" x="261.7" y="404.95" change="drawPreview()"/>
+	<s:NumericStepper id="numberSize" x="287" y="405.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="33" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<mx:HRule x="10" y="431" width="322" chromeColor="#222222"/>
+	
+	<!-- #footer controllers -->
+	<s:Label text="Footer" x="14" y="439" tabEnabled="false" />
+	<s:Label text="Left" x="14" y="461" tabEnabled="false" />
+	<s:Label text="Right" x="14" y="486" tabEnabled="false" />	
+	<s:TextInput id="footerLeftText"  x="70" y="455" width="262" borderVisible="true" tabEnabled="true" tabIndex="34" height="23" change="drawPreview()"/>
+	<s:TextInput id="footerRightText"  x="70" y="480" width="262" borderVisible="true" tabEnabled="true" tabIndex="35" height="23" change="drawPreview()"/>
+	<font:FontBrowser id="footerFont" x="69.75" y="505.8" height="23" width="190" dropShadowVisible="false" tabEnabled="true" tabIndex="36" change="drawPreview()" cornerRadius="0"/>
+	<mx:ColorPicker id="footerColor" width="23" height="23" tabEnabled="true" tabIndex="37" x="261.7" y="505.95" change="drawPreview()"/>
+	<s:NumericStepper id="footerSize" x="287" y="506.2" height="23" width="45" minimum="1" fontWeight="normal" textAlign="center" tabEnabled="true" tabIndex="38" change="drawPreview()" maximum="50" cornerRadius="0"/>
+	<s:Label text="Footer Height" tabEnabled="false"  x="195" y="538"/>
+	<s:TextInput id="footerHeight" tabEnabled="true" tabIndex="39"  x="286.2" y="532.2" height="20" width="32" borderVisible="true" borderColor="#696969" change="drawPreview()"/>
+	<s:Label text="in" tabEnabled="false"  x="321.5" y="538" />
+	<mx:HRule x="10" y="557" width="322" chromeColor="#222222"/>
+	
+	<!-- #Bottom Buttons -->	
+	<mx:LinkButton id="loadConfigBtn" x="14" y="568" tabEnabled="true" tabIndex="40" label="Load Config" cornerRadius="2" textDecoration="underline" rollOverColor="#D8D8E7" paddingLeft="3" paddingRight="3" paddingTop="3" paddingBottom="3" click="config.browseForLoad(event)"/>
+	<mx:LinkButton id="saveConfigBtn" x="95" y="568" tabEnabled="true" tabIndex="41" label="Save Config" cornerRadius="2" textDecoration="underline" rollOverColor="#D8D8E7" paddingLeft="3" paddingRight="3" paddingBottom="3" paddingTop="3" click="config.browseForSave(event)"/>	
+	<s:Button id="resetBtn" x="183" y="567" label="Reset" tabEnabled="true" tabIndex="42" click="reset()" cornerRadius="0"/>
+	<s:Button id="nextBtn" x="262" y="567" label="NEXT &gt;" fontWeight="bold" tabEnabled="true" tabIndex="43" enabled="false" cornerRadius="0" click="saveControl.browseForSave(event)"/>	
+	
+	<!-- #MsgBox -->
+	<s:TextArea id="msgBox" x="15" y="596" height="90" width="760"  borderVisible="false" editable="false" enabled="true" tabEnabled="false"/>
+	
+	<!-- #Page Navigation buttons -->
+	<s:RadioButton x="350" y="15" selected="true" tabEnabled="false" />
+	<s:Label x="368" y="20" text="Preview" fontSize="11" tabEnabled="false"/>
+	<s:Button id="firstPageBtn" x="433" y="16.65" label="First Page" fontSize="9" color="#000000" width="70" height="15" fontWeight="normal" enabled="false" cornerRadius="0" tabEnabled="true" tabIndex="44"  click="nav.navigate(event)"/>
+	<s:Button id="prevPageBtn" x="502" y="16.65" label="&lt;" width="27" height="15" fontSize="9" color="#000000" fontWeight="normal" enabled="false"  cornerRadius="0" tabEnabled="true" tabIndex="45" click="nav.navigate(event)"/>
+	<s:TextInput id="curPageInput" x="538" y="13" width="30" text="0" textAlign="center" enabled="false" tabEnabled="true" tabIndex="46" change="nav.navigate(event)" />
+	<s:Button id="nextPageBtn" x="577" y="16.65" label="&gt;" width="27" height="15" fontSize="9" color="#000000" fontWeight="normal" enabled="false"  cornerRadius="0" tabEnabled="true" tabIndex="47" click="nav.navigate(event)"/>	
+	<s:Button id="lastPageBtn" x="603" y="16.65" label="Last Page" width="70" height="15" fontSize="9" color="#000000" fontWeight="normal" enabled="false"  cornerRadius="0" tabEnabled="true" tabIndex="48" click="nav.navigate(event)"/>
+	<s:Label id="totalPagesLbl" x="683" y="20" text="0" fontSize="11" width="31" textAlign="right" fontWeight="bold" tabEnabled="false"/>
+	<s:Label x="719" y="20" text="Pages Total" fontSize="11" tabEnabled="false"/>
+	
+	<!-- #Save Detail Panel -->
+	<s:Panel id="savePanel" x="274" y="152" width="264" height="250" title="Save Details" tabEnabled="false" visible="false"  borderVisible="true">
+		<s:Label x="10" y="18" text="Pages :" tabEnabled="false" /> 
+		<s:TextInput id="saveFrom" x="55" y="12" width="25" textAlign="center" tabEnabled="true" tabIndex="49" change="saveControl.checkMinRange(event)"  height="22"/>
+		<s:Label x="86" y="17" text="-" fontSize="14" tabEnabled="false" />
+		<s:TextInput id="saveTo" x="98" y="12" width="25" textAlign="center" tabEnabled="true" tabIndex="50" change="saveControl.checkMaxRange(event)"  height="22"/>
+		<s:Button x="135" y="12" label="Select All Pages" width="115" tabEnabled="true" tabIndex="51" click="saveControl.getAllRange(event)"  cornerRadius="0" height="22"/>
+		<s:Label x="10" y="42" text="Save to : " tabEnabled="false" />
+		<s:Label id="saveFolderLbl" x="56" y="42" width="194" height="58" tabEnabled="false" />
+		<s:Label x="11" y="108" text="DPI :" />
+		<s:NumericStepper id="saveDPI" x="43" y="102" width="53" height="22" minimum="50" maximum="400" stepSize="50" textAlign="right" tabEnabled="true" tabIndex="52"  cornerRadius="0"/>
+		<s:Label id="saveQualityLabel" x="116" y="108" text="JPEG Quality : " tabEnabled="false" />
+		<s:NumericStepper id="saveQuality" x="197" y="102" width="53" height="22" minimum="0" maximum="100" stepSize="10" textAlign="right" tabEnabled="true" tabIndex="53"  cornerRadius="0"/>
+		<s:Label id="saveSpeedLabel" x="10" y="143" text="Encoding Speed (higher faster)              Too high will cause the system freeze" width="182" height="28" tabEnabled="false" />
+		<s:NumericStepper id="saveSpeed" x="197" y="143" width="53" minimum="10" maximum="500" stepSize="10" tabEnabled="true" tabIndex="54"  cornerRadius="0" height="22" textAlign="right"/>
+		<s:Button id="saveOK" x="105" y="184" label="OK" tabEnabled="true" tabIndex="55" click="saveControl.save(event)"   cornerRadius="0" height="22"/>
+		<s:Button id="saveCancel" x="180" y="184" label="Cancel" tabEnabled="true" tabIndex="56" click="saveControl.cancel(event)"  cornerRadius="0" height="22"/>
+	</s:Panel>	
+	
+	<!-- #Save Progress Window -->
+	<s:Panel id="saveProgress" x="283" y="258" width="258" height="212" title="Saving in Progress.." tabEnabled="false" visible="false" >
+		<mx:ProgressBar id="saveLoading" x="11" y="37" width="235" label="" opaqueBackground="0xffffff" mode="manual" tabEnabled="false" />	
+		<mx:ProgressBar id="saveLoadingTotal" x="11" y="75" width="235" label="" opaqueBackground="0xffffff" mode="manual" tabEnabled="false" />
+		<s:Label id="timeEstimate" x="11" y="111" width="235" height="38" tabEnabled="false" />
+		<s:Button x="176" y="147" label="Cancel" tabEnabled="true" tabIndex="57" click="saveControl.writeCancel(event)" />
+	</s:Panel>
+	
+	<!-- #Progress Bar -->
+	<mx:ProgressBar x="304" y="262" id="loadingBar" opaqueBackground="0xffffff" mode="manual" visible="false" />			
+	
+	
+	
+</s:WindowedApplication>
